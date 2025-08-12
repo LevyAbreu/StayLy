@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayLy - Quartos</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/quartos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round:wght@400&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="top-bar">
+        <div class="sup">
+            <div class="logo">
+                StayLy
+            </div>
+            <div class="user-actions">
+                <button class="btn-user">👤 lantern</button>
+                <button class="btn-logout">🚪 Logout</button>
+            </div>
+        </div>
+        <div class="inf">
+            <nav role="navigation" aria-label="Menu principal">
+                <ul class="nav-links">
+                    <li><a href="../index.html">Dashboard</a></li>
+                    <li><a href="reservas.html">Reservas</a></li>
+                    <li><a href="quartos.html" class="active">Quartos</a></li>
+                    <li><a href="#">Hóspedes</a></li>
+                    <li><a href="#">Relatórios</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Container principal -->
+    <div class="main-container">
+        <!-- Barra lateral esquerda -->
+        <aside class="sidebar">
+            <div class="hotel-info">
+                <h3>Pousada Maria</h3>
+                <div class="info-item">
+                    <span class="label">Endereço</span>
+                    <span class="value">Rua Marirana, Numero 6, Honório Roldão</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Cidade</span>
+                    <span class="value">Presidente Figueiredo - AM</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Último Acesso</span>
+                    <span class="value">10.1.4.214</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Quartos Disponíveis</span>
+                    <span class="value">15 / 17</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Taxa de Ocupação</span>
+                    <span class="value">88%</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Reservas Hoje</span>
+                    <span class="value">8</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Check-ins Pendentes</span>
+                    <span class="value">5</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Check-outs Hoje</span>
+                    <span class="value">3</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Avaliação Média</span>
+                    <span class="value">4.8 ⭐</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Área de conteúdo principal -->
+        <main class="content-area">
+            <!-- Barra de ações e filtros -->
+            <div class="actions-bar">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar quartos por número..." id="searchInput">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-status="todos" onclick="filterRooms('todos')">
+                        Todos (17)
+                    </button>
+                    <button class="filter-btn status-livre" data-status="livre" onclick="filterRooms('livre')">
+                        Livres (15)
+                    </button>
+                    <button class="filter-btn status-reservado" data-status="reservado" onclick="filterRooms('reservado')">
+                        Reservados (1)
+                    </button>
+                    <button class="filter-btn status-ocupado" data-status="ocupado" onclick="filterRooms('ocupado')">
+                        Ocupados (1)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Legenda de status -->
+            <div class="status-legend">
+                <div class="legend-item">
+                    <div class="legend-color status-livre"></div>
+                    <span>Livre para reserva</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color status-reservado"></div>
+                    <span>Reservado</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color status-ocupado"></div>
+                    <span>Ocupado</span>
+                </div>
+            </div>
+
+            <!-- Seção de Quartos -->
+            <section class="rooms-section">
+                <h2>Quartos do Hotel</h2>
+                
+                <!-- Primeiro Andar -->
+                <div class="floor-section">
+                    <h3>1º Andar</h3>
+                    <div class="rooms-grid">
+                        <div class="room-card status-livre" data-room="101" data-status="livre" onclick="openRoomDetails(101)">
+                            <div class="room-number">01</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">8 pessoas</span>
+                            </div>
+                            <div class="room-status">Livre</div>
+                        </div>
+
+                        <div class="room-card status-reservado" data-room="102" data-status="reservado" onclick="openRoomDetails(102)">
+                            <div class="room-number">02</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">2 pessoas</span>
+                            </div>
+                            <div class="room-status">Reservado</div>
+                        </div>
+
+                        <div class="room-card status-ocupado" data-room="103" data-status="ocupado" onclick="openRoomDetails(103)">
+                            <div class="room-number">03</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">3 pessoas</span>
+                            </div>
+                            <div class="room-status">Ocupado</div>
+                        </div>
+
+                        <div class="room-card status-indisponivel" data-room="104" data-status="indisponivel" onclick="openRoomDetails(104)">
+                            <div class="room-number">04</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">1 pessoas</span>
+                            </div>
+                            <div class="room-status">Indisponível</div>
+                        </div>
+
+                        <div class="room-card status-ocupado" data-room="105" data-status="ocupado" onclick="openRoomDetails(105)">
+                            <div class="room-number">05</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">1 pessoas</span>
+                            </div>
+                            <div class="room-status">Ocupado</div>
+                        </div>
+
+                        <div class="room-card status-livre" data-room="106" data-status="livre" onclick="openRoomDetails(106)">
+                            <div class="room-number">06</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">2 pessoas</span>
+                            </div>
+                            <div class="room-status">Livre</div>
+                        </div>
+
+                        <div class="room-card status-reservado" data-room="107" data-status="reservado" onclick="openRoomDetails(107)">
+                            <div class="room-number">07</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">4 pessoas</span>
+                            </div>
+                            <div class="room-status">reservado</div>
+                        </div>
+
+                        <div class="room-card status-ocupado" data-room="108" data-status="ocupado" onclick="openRoomDetails(108)">
+                            <div class="room-number">08</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">6 pessoas</span>
+                            </div>
+                            <div class="room-status">Ocupado</div>
+                        </div>
+                        
+                        <div class="room-card status-livre" data-room="108" data-status="livre" onclick="openRoomDetails(108)">
+                            <div class="room-number">09</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">6 pessoas</span>
+                            </div>
+                            <div class="room-status">Livre</div>
+                        </div>
+                        
+                        <div class="room-card status-livre" data-room="108" data-status="livre" onclick="openRoomDetails(108)">
+                            <div class="room-number">10</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">6 pessoas</span>
+                            </div>
+                            <div class="room-status">Livre</div>
+                        </div>
+                        
+                        <div class="room-card status-ocupado" data-room="108" data-status="ocupado" onclick="openRoomDetails(108)">
+                            <div class="room-number">17</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">6 pessoas</span>
+                            </div>
+                            <div class="room-status">Ocupado</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Segundo Andar -->
+                <div class="floor-section">
+                    <h3>2º Andar</h3>
+                    <div class="rooms-grid">
+                        <div class="room-card status-ocupado" data-room="201" data-status="ocupado" onclick="openRoomDetails(201)">
+                            <div class="room-number">11</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">3 pessoas</span>
+                            </div>
+                            <div class="room-status">Ocupado</div>
+                        </div>
+
+                        <div class="room-card status-ocupado" data-room="202" data-status="ocupado" onclick="openRoomDetails(202)">
+                            <div class="room-number">12</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">6 pessoas</span>
+                            </div>
+                            <div class="room-status">Ocupado</div>
+                        </div>
+
+                        <div class="room-card status-ocupado" data-room="203" data-status="ocupado" onclick="openRoomDetails(203)">
+                            <div class="room-number">13</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">6 pessoas</span>
+                            </div>
+                            <div class="room-status">Ocupado</div>
+                        </div>
+
+                        <div class="room-card status-livre" data-room="204" data-status="livre" onclick="openRoomDetails(204)">
+                            <div class="room-number">14</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">6 pessoas</span>
+                            </div>
+                            <div class="room-status">Livre</div>
+                        </div>
+
+                        <div class="room-card status-livre" data-room="205" data-status="livre" onclick="openRoomDetails(205)">
+                            <div class="room-number">15</div>
+                            <div class="room-capacity">
+                                <span class="capacity-icon">👥</span>
+                                <span class="capacity-text">6 pessoas</span>
+                            </div>
+                            <div class="room-status">Livre</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Estatísticas dos Quartos -->
+            <section class="room-stats-section">
+                <h2>Estatísticas dos Quartos</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon">🏨</div>
+                        <div class="stat-info">
+                            <span class="stat-value">16</span>
+                            <span class="stat-label">Total de Quartos</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <span class="stat-value">6</span>
+                            <span class="stat-label">Quartos Livres</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <span class="stat-value">2</span>
+                            <span class="stat-label">Reservados</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🔴</div>
+                        <div class="stat-info">
+                            <span class="stat-value">7</span>
+                            <span class="stat-label">Ocupados</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <span class="stat-value">43%</span>
+                            <span class="stat-label">Taxa de Ocupação</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <span class="stat-value">69</span>
+                            <span class="stat-label">Capacidade Total</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../scripts/quartos.js"></script>
+</body>
+</html>
+

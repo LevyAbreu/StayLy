@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayLy - Reservas</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/reservas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round:wght@400&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="sup">
+            <div class="logo">
+                StayLy
+            </div>
+            <div class="user-actions">
+                <button class="btn-user">👤 lantern</button>
+                <button class="btn-logout">🚪 Logout</button>
+            </div>
+        </div>
+        <div class="inf">
+            <nav role="navigation" aria-label="Menu principal">
+                <ul class="nav-links">
+                    <li><a href="../index.html">Dashboard</a></li>
+                    <li><a href="reservas.html" class="active">Reservas</a></li>
+                    <li><a href="quartos.html">Quartos</a></li>
+                    <li><a href="#">Hóspedes</a></li>
+                    <li><a href="#">Relatórios</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Container principal -->
+    <div class="main-container">
+        <!-- Barra lateral esquerda -->
+        <aside class="sidebar">
+            <div class="hotel-info">
+                <h3>Pousada Maria</h3>
+                <div class="info-item">
+                    <span class="label">Endereço</span>
+                    <span class="value">Rua Marirana, Numero 6, Honório Roldão</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Cidade</span>
+                    <span class="value">Presidente Figueiredo - AM</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Último Acesso</span>
+                    <span class="value">10.1.4.214</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Quartos Disponíveis</span>
+                    <span class="value">15 / 17</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Taxa de Ocupação</span>
+                    <span class="value">88%</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Reservas Hoje</span>
+                    <span class="value">8</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Check-ins Pendentes</span>
+                    <span class="value">5</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Check-outs Hoje</span>
+                    <span class="value">3</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Avaliação Média</span>
+                    <span class="value">4.8 ⭐</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Área de conteúdo principal -->
+        <main class="content-area">
+            <!-- Barra de ações -->
+            <div class="actions-bar">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar reservas por nome, quarto ou data..." id="searchInput">
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="openNewReservationModal()">
+                        ➕ Nova Reserva
+                    </button>
+                    <button class="btn-secondary" onclick="exportReservations()">
+                        📊 Exportar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filtros -->
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label for="statusFilter">Status:</label>
+                    <select id="statusFilter" onchange="filterReservations()">
+                        <option value="">Todos</option>
+                        <option value="confirmada">Confirmada</option>
+                        <option value="pendente">Pendente</option>
+                        <option value="cancelada">Cancelada</option>
+                        <option value="check-in">Check-in</option>
+                        <option value="check-out">Check-out</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="dateFilter">Data:</label>
+                    <input type="date" id="dateFilter" onchange="filterReservations()">
+                </div>
+                <div class="filter-group">
+                    <label for="roomFilter">Quarto:</label>
+                    <select id="roomFilter" onchange="filterReservations()">
+                        <option value="">Todos</option>
+                        <option value="101">Quarto 101</option>
+                        <option value="102">Quarto 102</option>
+                        <option value="103">Quarto 103</option>
+                        <option value="201">Quarto 201</option>
+                        <option value="202">Quarto 202</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Lista de Reservas -->
+            <section class="reservations-section">
+                <h2>Reservas Ativas</h2>
+                <div class="reservations-table">
+                    <div class="table-header">
+                        <div class="col-id">ID</div>
+                        <div class="col-guest">Hóspede</div>
+                        <div class="col-room">Quarto</div>
+                        <div class="col-dates">Check-in / Check-out</div>
+                        <div class="col-status">Status</div>
+                        <div class="col-value">Valor</div>
+                        <div class="col-actions">Ações</div>
+                    </div>
+                    
+                    <div class="reservation-row" data-status="confirmada">
+                        <div class="col-id">#001</div>
+                        <div class="col-guest">
+                            <div class="guest-info">
+                                <strong>João Silva</strong>
+                                <span>joao@email.com</span>
+                            </div>
+                        </div>
+                        <div class="col-room">101</div>
+                        <div class="col-dates">
+                            <div class="dates-info">
+                                <span class="check-in">15/01/2025</span>
+                                <span class="check-out">18/01/2025</span>
+                            </div>
+                        </div>
+                        <div class="col-status">
+                            <span class="status-badge status-confirmada">Confirmada</span>
+                        </div>
+                        <div class="col-value">R$ 450,00</div>
+                        <div class="col-actions">
+                            <button class="btn-action" onclick="viewReservation(1)" title="Ver detalhes">👁️</button>
+                            <button class="btn-action" onclick="editReservation(1)" title="Editar">✏️</button>
+                            <button class="btn-action btn-danger" onclick="cancelReservation(1)" title="Cancelar">❌</button>
+                        </div>
+                    </div>
+
+                    <div class="reservation-row" data-status="pendente">
+                        <div class="col-id">#002</div>
+                        <div class="col-guest">
+                            <div class="guest-info">
+                                <strong>Maria Santos</strong>
+                                <span>maria@email.com</span>
+                            </div>
+                        </div>
+                        <div class="col-room">102</div>
+                        <div class="col-dates">
+                            <div class="dates-info">
+                                <span class="check-in">20/01/2025</span>
+                                <span class="check-out">22/01/2025</span>
+                            </div>
+                        </div>
+                        <div class="col-status">
+                            <span class="status-badge status-pendente">Pendente</span>
+                        </div>
+                        <div class="col-value">R$ 300,00</div>
+                        <div class="col-actions">
+                            <button class="btn-action" onclick="viewReservation(2)" title="Ver detalhes">👁️</button>
+                            <button class="btn-action" onclick="editReservation(2)" title="Editar">✏️</button>
+                            <button class="btn-action btn-confirm" onclick="confirmReservation(2)" title="Confirmar">✅</button>
+                        </div>
+                    </div>
+
+                    <div class="reservation-row" data-status="check-in">
+                        <div class="col-id">#003</div>
+                        <div class="col-guest">
+                            <div class="guest-info">
+                                <strong>Carlos Oliveira</strong>
+                                <span>carlos@email.com</span>
+                            </div>
+                        </div>
+                        <div class="col-room">201</div>
+                        <div class="col-dates">
+                            <div class="dates-info">
+                                <span class="check-in">10/01/2025</span>
+                                <span class="check-out">15/01/2025</span>
+                            </div>
+                        </div>
+                        <div class="col-status">
+                            <span class="status-badge status-check-in">Check-in</span>
+                        </div>
+                        <div class="col-value">R$ 750,00</div>
+                        <div class="col-actions">
+                            <button class="btn-action" onclick="viewReservation(3)" title="Ver detalhes">👁️</button>
+                            <button class="btn-action" onclick="editReservation(3)" title="Editar">✏️</button>
+                            <button class="btn-action btn-checkout" onclick="checkoutReservation(3)" title="Check-out">🚪</button>
+                        </div>
+                    </div>
+
+                    <div class="reservation-row" data-status="confirmada">
+                        <div class="col-id">#004</div>
+                        <div class="col-guest">
+                            <div class="guest-info">
+                                <strong>Ana Costa</strong>
+                                <span>ana@email.com</span>
+                            </div>
+                        </div>
+                        <div class="col-room">103</div>
+                        <div class="col-dates">
+                            <div class="dates-info">
+                                <span class="check-in">25/01/2025</span>
+                                <span class="check-out">30/01/2025</span>
+                            </div>
+                        </div>
+                        <div class="col-status">
+                            <span class="status-badge status-confirmada">Confirmada</span>
+                        </div>
+                        <div class="col-value">R$ 625,00</div>
+                        <div class="col-actions">
+                            <button class="btn-action" onclick="viewReservation(4)" title="Ver detalhes">👁️</button>
+                            <button class="btn-action" onclick="editReservation(4)" title="Editar">✏️</button>
+                            <button class="btn-action btn-danger" onclick="cancelReservation(4)" title="Cancelar">❌</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Estatísticas rápidas -->
+            <section class="stats-section">
+                <h2>Estatísticas de Reservas</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <span class="stat-value">24</span>
+                            <span class="stat-label">Total de Reservas</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <span class="stat-value">18</span>
+                            <span class="stat-label">Confirmadas</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-info">
+                            <span class="stat-value">4</span>
+                            <span class="stat-label">Pendentes</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🏨</div>
+                        <div class="stat-info">
+                            <span class="stat-value">3</span>
+                            <span class="stat-label">Check-ins Hoje</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-info">
+                            <span class="stat-value">R$ 12.450</span>
+                            <span class="stat-label">Receita do Mês</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para Nova Reserva -->
+    <div id="newReservationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nova Reserva</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="newReservationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guestName">Nome do Hóspede:</label>
+                            <input type="text" id="guestName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guestEmail">Email:</label>
+                            <input type="email" id="guestEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guestPhone">Telefone:</label>
+                            <input type="tel" id="guestPhone">
+                        </div>
+                        <div class="form-group">
+                            <label for="roomNumber">Quarto:</label>
+                            <select id="roomNumber" required>
+                                <option value="">Selecione um quarto</option>
+                                <option value="101">Quarto 101</option>
+                                <option value="102">Quarto 102</option>
+                                <option value="103">Quarto 103</option>
+                                <option value="201">Quarto 201</option>
+                                <option value="202">Quarto 202</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="checkinDate">Check-in:</label>
+                            <input type="date" id="checkinDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkoutDate">Check-out:</label>
+                            <input type="date" id="checkoutDate" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guests">Número de Hóspedes:</label>
+                            <input type="number" id="guests" min="1" max="4" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="totalValue">Valor Total:</label>
+                            <input type="number" id="totalValue" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="observations">Observações:</label>
+                        <textarea id="observations" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="btn-primary" onclick="saveReservation()">Salvar Reserva</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/reservas.js"></script>
+</body>
+</html>
+

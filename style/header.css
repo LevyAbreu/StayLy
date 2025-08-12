@@ -1,0 +1,94 @@
+.top-bar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4a5c6a;
+    padding: 0;
+    height: 50px;
+}
+
+.logo {
+    padding: 0 40px 0 20px;
+    font-size: 24px;
+    font-family: 'Varela Round', sans-serif;
+    color: white;
+    font-weight: 400;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 20px;
+}
+
+.btn-user, .btn-logout {
+    background-color: #337ab7;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-user:hover, .btn-logout:hover {
+    background-color: #286090;
+}
+
+.btn-logout {
+    background-color: #5cb85c;
+}
+
+.btn-logout:hover {
+    background-color: #449d44;
+}
+
+.inf {
+    background-color: #e8e8e8;
+    border-bottom: 1px solid #ddd;
+}
+
+.inf nav {
+    padding: 0 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-right: 0;
+}
+
+.nav-links a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-weight: 400;
+    padding: 12px 20px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-links a:hover {
+    background-color: #ddd;
+}
+
+.nav-links a.active {
+    background-color: #fff;
+    border-bottom-color: #337ab7;
+}
