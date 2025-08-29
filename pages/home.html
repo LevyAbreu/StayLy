@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Home - PayPlanner</title>
+  <title>Home - StayLy</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../style/style.css">
-  <link rel="icon" href="../assets/logo.png" type="image/png">
+  <link rel="icon" href="../assets/icon.png" type="image/png">
 </head>
 <body>
   <div class="dashboard" id="dashboard">
   <header class="header">
-    <div class="logo">PayPlanner</div>
+    <div class="logo">SatyLy</div>
 
     <div class="user-profile" id="userDropdown">
-      <span id="userWallet">Carregando...</span>
       <span id="userName">Carregando...</span>
       <span class="arrow">▼</span>
       <div class="dropdown-menu">
@@ -25,32 +24,26 @@
     
     <div class="container">
       <div class="summary">
-        <div class="summary-card total"><h3>Dívida Total</h3><p id="totalDebt">R$0,00</p></div>
-        <div class="summary-card paid"><h3>Pagas</h3><p id="paidAmount">R$0,00</p></div>
-        <div class="summary-card pending"><h3>Pendentes</h3><p id="pendingAmount">R$0,00</p></div>
-        <div class="summary-card overdue"><h3>Vencidas</h3><p id="overdueAmount">R$0,00</p></div>
+        <div class="summary-card occupied"><h3>Ocupados</h3><p id="occupiedRooms">0</p></div>
+        <div class="summary-card reserved"><h3>Reservados</h3><p id="reservedRooms">0</p></div>
+        <div class="summary-card available"><h3>Disponíveis</h3><p id="availableRooms">0</p></div>
+        <div class="summary-card total"><h3>Total</h3><p id="totalRooms">0</p></div>
       </div>
 
       <div class="actions">
-        <div class="filters">
-          <button class="btn-filter active" onclick="filterDebts('all')">Todas</button>
-          <button class="btn-filter" onclick="filterDebts('paid')">Pagas</button>
-          <button class="btn-filter" onclick="filterDebts('paying')">Em Pagamento</button>
-          <button class="btn-filter" onclick="filterDebts('pending')">Pendentes</button>
-          <button class="btn-filter" onclick="filterDebts('overdue')">Vencidas</button>
-        </div>
-        <button class="btn-primary" id="addDebtBtn"><i class="fas fa-plus"></i>Adicionar Dívida</button>
-        <button class="btn-primary" id="addMoneyBtn"><i class="fas fa-plus"></i>Adicionar Dinheiro</button>
+        <button class="btn-primary" id="addRoomBtn"><i class="fas fa-plus"></i> Adicionar Quarto</button>
       </div>
 
-      <table id="debtsTable">
+      <table id="roomsTable">
         <thead>
           <tr>
-            <th onclick="sortTable(0)">ID <i class="fas fa-sort"></i></th>
-            <th onclick="sortTable(1)">Nome <i class="fas fa-sort"></i></th>
-            <th onclick="sortTable(2)">Valor <i class="fas fa-sort"></i></th>
+            <th>Nº Quarto</th>
+            <th>Responsável</th>
             <th>Status</th>
-            <th onclick="sortTable(4)">Vencimento <i class="fas fa-sort"></i></th>
+            <th>Pessoas</th>
+            <th>Entrada</th>
+            <th>Saída Prevista</th>
+            <th>Valor</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -59,67 +52,47 @@
     </div>
   </div>
 
-  <!-- Modal para Dívidas -->
-  <div class="modal" id="debtModal">
+  <!-- Modal para Quartos -->
+  <div class="modal" id="roomModal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 id="modalTitle">Adicionar Dívida</h2>
-        <span class="close" onclick="closeModal('debtModal')">&times;</span>
+        <h2 id="modalTitle">Adicionar Quarto</h2>
+        <span class="close" onclick="closeModal('roomModal')">&times;</span>
       </div>
-      <form id="debtForm">
-        <input type="hidden" id="debtId">
+      <form id="roomForm">
+        <input type="hidden" id="roomId">
+        <div class="form-group"><label>Nome Responsável</label><input type="text" id="responsavelNome" required></div>
+        <div class="form-group"><label>CPF</label><input type="text" id="responsavelCpf" required></div>
+        <div class="form-group"><label>Telefone</label><input type="text" id="telefoneContato" required></div>
+        <div class="form-group"><label>Email</label><input type="email" id="emailContato" required></div>
+        <div class="form-group"><label>Nº Quarto</label><input type="text" id="numeroQuarto" required></div>
         <div class="form-group">
-          <label for="debtName">Nome</label>
-          <input type="text" id="debtName" required placeholder="Nome da dívida">
-        </div>
-        <div class="form-group">
-          <label for="debtValue">Valor</label>
-          <input type="number" id="debtValue" required placeholder="Valor a pagar" step="0.01">
-        </div>
-        <div class="form-group">
-          <label for="debtStatus">Status</label>
-          <select id="debtStatus" required>
-            <option value="">Selecionar status</option>
-            <option value="paid">Pago</option>
-            <option value="paying">Pagando</option>
-            <option value="pending">Pendente</option>
+          <label>Status</label>
+          <select id="status" required>
+            <option value="">Selecionar</option>
+            <option value="Ocupado">Ocupado</option>
+            <option value="Reservado">Reservado</option>
+            <option value="Disponível">Disponível</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="debtDate">Vencimento</label>
-          <input type="date" id="debtDate" required>
+        <div class="form-group"><label>Qtd Pessoas</label><input type="number" id="quantidadePessoas" required></div>
+        <div class="form-group"><label>Check-in</label><input type="date" id="checkIN" required></div>
+        <div class="form-group"><label>Saída Prevista</label><input type="date" id="saidaPrevista" required></div>
+        <div class="form-group"><label>Tipo Veículo</label>
+          <select id="tipoVeiculo">
+            <option value="">Nenhum</option>
+            <option value="Carro">Carro</option>
+            <option value="Moto">Moto</option>
+          </select>
         </div>
+        <div class="form-group"><label>Marca</label><input type="text" id="marcaVeiculo"></div>
+        <div class="form-group"><label>Modelo</label><input type="text" id="modeloVeiculo"></div>
+        <div class="form-group"><label>Placa</label><input type="text" id="placaVeiculo"></div>
+        <div class="form-group"><label>Valor do Quarto</label><input type="number" id="valorQuarto" step="0.01" required></div>
+        <div class="form-group"><label>Observações</label><textarea id="observacoes"></textarea></div>
         <div class="form-actions">
-          <button type="button" class="btn-cancel" onclick="closeModal('debtModal')">Cancelar</button>
-          <button type="submit" class="btn-primary">Salvar Dívida</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Modal para Adicionar Dinheiro -->
-  <div class="modal" id="moneyModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Adicionar Dinheiro</h2>
-        <span class="close" onclick="closeModal('moneyModal')">&times;</span>
-      </div>
-      <form id="moneyForm">
-        <div class="form-group">
-          <label for="moneyValue">Valor</label>
-          <input type="number" id="moneyValue" required placeholder="Valor a adicionar" step="0.01" min="0">
-        </div>
-        <div class="form-group">
-          <label for="moneyReason">Motivo</label>
-          <input type="text" id="moneyReason" required placeholder="Motivo da adição">
-        </div>
-        <div class="form-group">
-          <label for="moneyDate">Data</label>
-          <input type="date" id="moneyDate" required>
-        </div>
-        <div class="form-actions">
-          <button type="button" class="btn-cancel" onclick="closeModal('moneyModal')">Cancelar</button>
-          <button type="submit" class="btn-primary">Adicionar Dinheiro</button>
+          <button type="button" class="btn-cancel" onclick="closeModal('roomModal')">Cancelar</button>
+          <button type="submit" class="btn-primary">Salvar</button>
         </div>
       </form>
     </div>

@@ -4,15 +4,16 @@ import {   getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPo
  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC0WdwNITU-pxjo_MTP_IXNZgMwYeQytJk",
-  authDomain: "payplanner-c3dd0.firebaseapp.com",
-  projectId: "payplanner-c3dd0",
-  storageBucket: "payplanner-c3dd0.firebasestorage.app",
-  messagingSenderId: "598849178122",
-  appId: "1:598849178122:web:2f4c58ef3cdf7477baadf3",
-  measurementId: "G-MEEXR58R72"
-}
+  apiKey: "AIzaSyAMY7ks1IUSolst8eICwm4qDE7bxT4cGCE",
+  authDomain: "satayly-e7fe6.firebaseapp.com",
+  projectId: "satayly-e7fe6",
+  storageBucket: "satayly-e7fe6.firebasestorage.app",
+  messagingSenderId: "279822049264",
+  appId: "1:279822049264:web:3033519134a5d53074c735",
+  measurementId: "G-HSFYXGZNDD"
+};
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 

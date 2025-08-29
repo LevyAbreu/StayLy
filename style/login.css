@@ -1,121 +1,125 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  body {
-    background: #121826;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .login-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 20px;
-  }
-  
-  .login-card {
-    background: #1E2533;
-    padding: 30px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.4);
-    text-align: center;
-  }
-  
-  .login-card h2 {
-    margin-bottom: 20px;
-    font-size: 2rem;
-    color: #22C55E;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-    text-align: left;
-  }
-  
-  label {
-    font-size: .9rem;
-    color: #9CA3AF;
-    margin-bottom: 5px;
-    display: block;
-  }
-  
-  input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #2A2F3D;
-    border-radius: 8px;
-    background: #121826;
-    color: white;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #22C55E;
-    box-shadow: 0 0 0 2px rgba(34,197,94,.3);
-  }
-  
-  .form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: .85rem;
-    margin-bottom: 15px;
-  }
-  
-  .form-options a {
-    color: #22C55E;
-    text-decoration: none;
-  }
-  
-  .btn-primary {
-    background: #22C55E;
-    color: white;
-    border: none;
-    padding: 12px;
-    width: 100%;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .3s;
-  }
-  
-  .btn-primary:hover {
-    background: #16A34A;
-  }
-  
-  .divider {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 20px 0;
-  }
-  
-  .divider span {
-    flex: 1;
-    border-top: 1px solid #2A2F3D;
-    margin: 0 10px;
-    color: #9CA3AF;
-    font-size: .85rem;
-  }
-  
-  .signup-text {
-    margin-top: 15px;
-    font-size: .9rem;
-  }
-  
-  .signup-text a {
-    color: #22C55E;
-    text-decoration: none;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #121826, #1B1F2A);
+  color: #E5E7EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.login-card {
+  background: #1E2433;
+  padding: 40px 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.5);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,.6);
+}
+
+.login-card h2 {
+  margin-bottom: 25px;
+  font-size: 2rem;
+  color: #E91E63;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+label {
+  font-size: .9rem;
+  color: #9CA3AF;
+  margin-bottom: 6px;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #2A2F3D;
+  border-radius: 8px;
+  background: #121826;
+  color: #E5E7EB;
+  transition: 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #E91E63;
+  box-shadow: 0 0 0 2px rgba(233,30,99,.3);
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .85rem;
+  margin-bottom: 18px;
+}
+
+.form-options a {
+  color: #E91E63;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.form-options a:hover {
+  color: #C2185B;
+}
+
+.btn-primary {
+  background: #E91E63;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-primary:hover {
+  background: #C2185B;
+  transform: translateY(-2px);
+}
+
+.signup-text {
+  margin-top: 18px;
+  font-size: .9rem;
+  color: #9CA3AF;
+}
+
+.signup-text a {
+  color: #E91E63;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.signup-text a:hover {
+  color: #C2185B;
+}
