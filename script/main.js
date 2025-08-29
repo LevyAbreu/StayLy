@@ -54,7 +54,7 @@ document.getElementById("logoutBtn").addEventListener("click", async (e) => {
 // Carregar dados
 async function loadData() {
   rooms = []
-  const q = query(collection(db, "rooms")) // rooms = coleção do Firestore
+  const q = query(collection(db, "rooms"))
   const querySnapshot = await getDocs(q)
   querySnapshot.forEach((docSnap) => {
     rooms.push({ id: docSnap.id, ...docSnap.data() })

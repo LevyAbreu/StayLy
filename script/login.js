@@ -28,6 +28,28 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     alert("Login realizado com sucesso!")
     window.location.href = "../pages/home.html"
   } catch (error) {
-    alert("Erro no login: " + error.message)
+    alert("Falha no login: " + error.message)
   }
 })
+
+document.querySelectorAll(".toggle-password").forEach(btn => {
+  // definir imagens
+  const olhoAberto = "https://img.icons8.com/?size=100&id=59814&format=png&color=E91E63";
+  const olhoFechado = "https://img.icons8.com/?size=100&id=60022&format=png&color=E91E63";
+
+  // definir imagem inicial
+  btn.innerHTML = `<img src="${olhoFechado}" alt="Mostrar senha" width="20">`;
+
+  btn.addEventListener("click", () => {
+    const input = document.getElementById(btn.dataset.target);
+    const img = btn.querySelector("img");
+
+    if (input.type === "password") {
+      input.type = "text";
+      img.src = olhoAberto;
+    } else {
+      input.type = "password";
+      img.src = olhoFechado;
+    }
+  });
+});
