@@ -158,7 +158,7 @@ tr:hover {
 
 /* Modal */
 .modal {
-  display: none;
+  display: none; /* garante que o modal fique invisível por padrão */
   position: fixed;
   top: 0;
   left: 0;
@@ -166,10 +166,8 @@ tr:hover {
   height: 100%;
   background: rgba(0,0,0,.7);
   overflow: hidden;
-  display: flex;
   justify-content: center;
   align-items: center;
-
   z-index: 1000;
 }
 
