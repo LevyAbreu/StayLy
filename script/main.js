@@ -1,10 +1,10 @@
-import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc }
+import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc } 
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
-import { getAuth, signOut, onAuthStateChanged }
+import { getAuth, signOut, onAuthStateChanged } 
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"
-import { initializeApp }
+import { initializeApp } 
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
-import { query, where }
+import { query, where } 
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
 
 const firebaseConfig = {
@@ -34,9 +34,12 @@ const reservedElement = document.getElementById("reservedRooms")
 const availableElement = document.getElementById("availableRooms")
 const totalElement = document.getElementById("totalRooms")
 
+let currentUser = null
+
 // Autenticação
 onAuthStateChanged(auth, (user) => {
   if (user) {
+    currentUser = user
     document.getElementById("userName").textContent = user.displayName || user.email
     loadData()
   } else {
@@ -51,10 +54,12 @@ document.getElementById("logoutBtn").addEventListener("click", async (e) => {
   window.location.href = "../login.html"
 })
 
-// Carregar dados
+// Carregar dados (só do usuário logado)
 async function loadData() {
   rooms = []
-  const q = query(collection(db, "rooms"))
+  if (!currentUser) return
+
+  const q = query(collection(db, "rooms"), where("userId", "==", currentUser.uid))
   const querySnapshot = await getDocs(q)
   querySnapshot.forEach((docSnap) => {
     rooms.push({ id: docSnap.id, ...docSnap.data() })
@@ -78,8 +83,10 @@ function renderRoomsTable() {
       <td>${formatDate(room.saidaPrevista)}</td>
       <td>R$${parseFloat(room.valorQuarto).toFixed(2)}</td>
       <td>
-        <button class="btn-action btn-edit" onclick="editRoom('${room.id}')"><i class="fas fa-edit"></i></button>
-        <button class="btn-action btn-delete" onclick="deleteRoom('${room.id}')"><i class="fas fa-trash"></i></button>
+        ${room.userId === currentUser.uid ? `
+          <button class="btn-action btn-edit" onclick="editRoom('${room.id}')"><i class="fas fa-edit"></i></button>
+          <button class="btn-action btn-delete" onclick="deleteRoom('${room.id}')"><i class="fas fa-trash"></i></button>
+        ` : '-'}
       </td>
     `
     tbody.appendChild(tr)
@@ -109,7 +116,7 @@ function formatDate(dateString) {
 function openRoomModal(id = null) {
   if (id) {
     const room = rooms.find(r => r.id === id)
-    if (room) {
+    if (room && room.userId === currentUser.uid) {
       modalTitle.textContent = "Editar Quarto"
       roomId.value = room.id
       Object.keys(room).forEach(key => {
@@ -117,6 +124,9 @@ function openRoomModal(id = null) {
           document.getElementById(key).value = room[key]
         }
       })
+    } else {
+      alert("Você não pode editar este quarto.")
+      return
     }
   } else {
     modalTitle.textContent = "Adicionar Quarto"
@@ -140,6 +150,11 @@ roomForm.addEventListener("submit", async (e) => {
     if (el.id && el.value) data[el.id] = el.value
   })
 
+  // Salvar UID do usuário
+  if (currentUser) {
+    data.userId = currentUser.uid
+  }
+
   try {
     if (roomId.value) {
       await updateDoc(doc(db, "rooms", roomId.value), data)
@@ -161,6 +176,12 @@ window.editRoom = function(id) {
 
 // Deletar quarto
 window.deleteRoom = async function(id) {
+  const room = rooms.find(r => r.id === id)
+  if (!room || room.userId !== currentUser.uid) {
+    alert("Você não pode deletar este quarto.")
+    return
+  }
+
   if (confirm("Deseja deletar este quarto?")) {
     try {
       await deleteDoc(doc(db, "rooms", id))
