@@ -6,6 +6,7 @@ import {
   setPersistence,
   browserLocalPersistence,
   browserSessionPersistence,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
@@ -21,7 +22,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// --- Toggle de senha (ícones azuis pra bater com a paleta) ---
+// MOSTRAR/OCULTAR SENHA
 document.querySelectorAll(".toggle-password").forEach(btn => {
   const azul = "3B82F6";
   const olhoAberto  = `https://img.icons8.com/?size=100&id=59814&format=png&color=${azul}`;
@@ -47,7 +48,7 @@ document.querySelectorAll(".toggle-password").forEach(btn => {
   });
 });
 
-// --- Login ---
+// LOGIN
 const form = document.getElementById("loginForm");
 if (form) {
   form.addEventListener("submit", async (e) => {
@@ -55,14 +56,12 @@ if (form) {
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
-
     const remember = document.getElementById("rememberMe").checked;
-    // Persistência conforme o checkbox
-    await setPersistence(auth, remember ? browserLocalPersistence : browserSessionPersistence);
 
     try {
+      await setPersistence(auth, remember ? browserLocalPersistence : browserSessionPersistence);
       await signInWithEmailAndPassword(auth, email, password);
-      // redirecione conforme sua estrutura de pastas
+
       window.location.href = "pages/home.html";
     } catch (error) {
       const map = {
@@ -75,29 +74,13 @@ if (form) {
       alert(map[error.code] || `Falha no login: ${error.message}`);
     }
   });
-} else {
-  console.error("Formulário de login não encontrado: adicione id='loginForm' no <form>.");
 }
 
-// --- Esqueci minha senha ---
-const forgot = document.getElementById("forgotPassword");
-if (forgot) {
-  forgot.addEventListener("click", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("email").value.trim();
-    if (!email) {
-      alert("Informe seu e-mail para enviarmos o link de redefinição.");
-      return;
+// AUTOLOGIN
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    if (window.location.pathname.endsWith("login.html")) {
+      window.location.href = "pages/home.html";
     }
-    try {
-      await sendPasswordResetEmail(auth, email);
-      alert("Enviamos um link de redefinição para seu e-mail.");
-    } catch (error) {
-      const map = {
-        "auth/invalid-email": "E-mail inválido.",
-        "auth/user-not-found": "Não encontramos uma conta com esse e-mail."
-      };
-      alert(map[error.code] || `Não foi possível enviar o e-mail: ${error.message}`);
-    }
-  });
-}
+  }
+});

@@ -14,7 +14,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 
-// Função de validação de senha (adaptada do Python)
 function validarSenha(password) {
   const errors = [];
   if (!/[0-9]/.test(password)) errors.push("A senha deve conter ao menos 1 número.");
@@ -59,7 +58,6 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   }
 });
 
-// --- Toggle de senha (ícones azuis pra bater com a paleta) ---
 document.querySelectorAll(".toggle-password").forEach(btn => {
   const azul = "3B82F6";
   const olhoAberto  = `https://img.icons8.com/?size=100&id=59814&format=png&color=${azul}`;

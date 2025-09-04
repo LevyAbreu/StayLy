@@ -343,15 +343,136 @@ width: 8px;
 }
 
 
-/* Responsividade */
-@media (max-width: 900px) {
-  .services {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
+/* Responsividade Mobile */
 @media (max-width: 600px) {
+  /* Header */
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 20px;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .user-profile {
+    font-size: 0.9rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 40px 15px;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  /* Filtros -> empilha em coluna */
+  .filtros {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .filtro {
+    font-size: 0.95rem;
+  }
+
+  /* Botão ação */
+  .actions button {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+  /* Services (quartos) */
   .services {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Apenas 1 card por linha */
+    gap: 15px;
+    padding: 20px 10px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+  }
+
+  .details {
+    font-size: 0.9rem;
+  }
+
+  /* Modal */
+  .modal-content {
+    max-width: 100%;
+    border-radius: 0;
+    padding: 20px;
+  }
+
+  .modal-header h2 {
+    font-size: 1rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-primary, .btn-cancel {
+    width: 100%;
+    padding: 12px;
+  }
+
+  /* Login e Cadastro */
+  .login-container {
+    flex-direction: column;
+    height: auto;
+    margin: 20px;
+    border-radius: 12px;
+  }
+
+  .login-left, 
+  .login-right {
+    flex: none;
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .login-right {
+    order: -1; /* Mostra "Bem-vindo" primeiro no mobile */
+    border-radius: 12px 12px 0 0;
+  }
+
+  .login-left {
+    border-radius: 0 0 12px 12px;
+  }
+
+  .login-left h2,
+  .login-right h1 {
+    font-size: 1.6rem;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  input {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+    padding: 14px;
   }
 }

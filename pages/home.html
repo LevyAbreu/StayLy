@@ -8,7 +8,6 @@
   <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
 </head>
 <body>
-  <!-- Cabeçalho -->
   <header class="header">
     <div class="logo">StayLy</div>
     <div class="user-profile" id="userDropdown">
@@ -21,13 +20,11 @@
   </header>
 
   <main>
-    <!-- Hero -->
     <section class="hero">
       <h1>Gerenciamento de Hospedagens</h1>
       <p>Controle de quartos, reservas e estadias em um só lugar.</p>
     </section>
 
-    <!-- Painel de filtros -->
     <section class="filtros">
       <div class="filtro">Disponíveis: <span id="quartosLivres">0</span></div>
       <div class="filtro">Reservados: <span id="quartosReservados">0</span></div>
@@ -36,18 +33,13 @@
       <div class="filtro">Total: <span id="quartosTotais">0</span></div>
     </section>
 
-    <!-- Botão adicionar quarto -->
     <section class="actions">
       <button type="button" id="btnAddQuarto">Adicionar Quarto</button>
     </section>
 
-    <!-- Grid de Quartos -->
-    <section class="services" id="quartosGrid">
-      <!-- Quartos são renderizados via JS -->
-    </section>
+    <section class="services" id="quartosGrid"></section>
   </main>
 
-  <!-- Modal de Cadastro/Edição de Quarto -->
   <div class="modal" id="roomModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -77,7 +69,6 @@
     </div>
   </div>
 
-  <!-- Modal para Reservar / Check-in -->
   <div class="modal" id="actionModal">
     <div class="modal-content">
       <div class="modal-header">
