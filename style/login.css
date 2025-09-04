@@ -1,0 +1,132 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #1E293B;
+}
+
+/* Container dividido */
+.login-container {
+    display: flex;
+    width: 100%;
+    max-width: 950px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Lado esquerdo com logo */
+.login-right {
+    flex: 1;
+    background: linear-gradient(135deg, #1E3A8A, #2563EB, #3B82F6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.login-left h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.login-left p {
+    font-size: 1rem;
+    max-width: 300px;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* Lado direito com formulário */
+.login-left {
+    flex: 1;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px 40px;
+}
+
+.login-right h2 {
+    font-size: 1.8rem;
+    color: #1E3A8A;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 0.9rem;
+    color: #374151;
+    margin-bottom: 6px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    background: #F9FAFB;
+    color: #111827;
+    transition: 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, .3);
+}
+
+/* Botão */
+.btn-primary {
+    background: #3B82F6;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-primary:hover {
+    background: #2563EB;
+    transform: translateY(-2px);
+}
+
+/* Texto de signup */
+.signup-text {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: #6B7280;
+    text-align: center;
+}
+
+.signup-text a {
+    color: #3B82F6;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.signup-text a:hover {
+    color: #2563EB;
+}
+
